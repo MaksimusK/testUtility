@@ -3,6 +3,7 @@ package com.test.testUtility;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Utility {
@@ -13,20 +14,28 @@ public class Utility {
         List<String> fileString = new ArrayList<>();
         List<Integer> fileInteger = new ArrayList<>();
         List<Float> fileFloat = new ArrayList<>();
+        String prefix = "";
 
         try(FileReader fileInputStream = new FileReader(file);
-            Scanner scanner = new Scanner(fileInputStream)
+            Scanner scanner = new Scanner(fileInputStream).useLocale(Locale.US);
+            FileWriter fileWriterInt = new FileWriter(prefix + "integers.txt");
+            FileWriter fileWriterFloat = new FileWriter(prefix + "floats.txt");
+            FileWriter fileWriterStr = new FileWriter(prefix + "strings.txt");
+
         )
         {
             while(scanner.hasNext()){
 
                 if(scanner.hasNextInt()){
-                    fileInteger.add(scanner.nextInt());
-                }
-                else if(scanner.hasNext()){
-                    fileString.add(scanner.nextLine());
-                }else if(scanner.hasNextFloat()){
-                    fileFloat.add(scanner.nextFloat());
+//                    fileInteger.add(scanner.nextInt());
+                    fileWriterInt.write(scanner.nextInt() + "\n");
+                }else if(scanner.hasNextFloat() || scanner.hasNextDouble()){
+//                    fileFloat.add(scanner.nextFloat());
+                    fileWriterFloat.write(scanner.nextFloat() + "\n");
+                } else if(scanner.hasNext()){
+//                    fileString.add(scanner.nextLine());
+                    fileWriterStr.write(scanner.nextLine() + "\n");
+
                 }
             }
         } catch (FileNotFoundException e) {
@@ -35,11 +44,6 @@ public class Utility {
             throw new RuntimeException(e);
         }
 
-
-//        for (int i = 0; i < args.length; i++) {
-//            System.out.println(args[i]);
-//
-//        }
 
 
     }
