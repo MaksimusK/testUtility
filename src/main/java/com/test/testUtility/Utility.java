@@ -7,20 +7,54 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Utility {
-    static String prefix = "prefix_"; // -p
-    static String path = "src/main/java/com/test/testUtility"; //-o
-    static private  boolean addNowFile = true; // отвечает за дозапись -a
+    static String path = ""; //-o
+    static String prefix = ""; // -p
+    static private  boolean addNowFile = false; // отвечает за дозапись -a
     static private boolean extendedInfo = false; //-f
-    static private boolean hortInfo = false; //-s
+    static private boolean shortInfo = false; //-s
 
     public static void main(String[] args) {
+        int count = 0;
+        String[] mas = new String[]{"-o", "src/main/java/com/test/testUtility", "-p", "prefix_", "src/main/java/com/test/testUtility/in1.txt"};
+//        File file = new File("src/main/java/com/test/testUtility/in1.txt");
+        List<File> files = new ArrayList<>();
 
-        File file = new File("src/main/java/com/test/testUtility/in1.txt");
+        for (int i = 0; i < mas.length; i++) {
+            if(count == 1){
+                count=0;
+                continue;
+            }else if(mas[i] == "-o"){
+                path = mas[i+1];
+                count=1;
+            }else if(mas[i] == "-p"){
+                prefix = mas[i+1];
+                count=1;
+            }else if(mas[i] == "-a"){
+                addNowFile = true;
+                count=1;
+            }else if(mas[i] == "-f"){
+                extendedInfo = true;
+                count=1;
+            }else if(mas[i] == "-s"){
+                shortInfo = true;
+                count=1;
+            }else{
+                File file = new File(mas[i]);
+                if(file.exists()){
+                    files.add(file);
+                }else{
+                    System.out.println("Такого файла не существует!");
+                }
+            }
+        }
+
 //        List<String> fileString = new ArrayList<>();
 //        List<Integer> fileInteger = new ArrayList<>();
 //        List<Float> fileFloat = new ArrayList<>();
+        for (int i = 0; i < files.size(); i++) {
 
-        filteringByType(file);
+            filteringByType(files.get(i));
+        }
     }
 
     public static void filteringByType(File file){
