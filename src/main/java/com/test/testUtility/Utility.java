@@ -31,13 +31,10 @@ public class Utility {
                 count=1;
             }else if(mas[i] == "-a"){
                 addNowFile = true;
-                count=1;
             }else if(mas[i] == "-f"){
                 extendedInfo = true;
-                count=1;
             }else if(mas[i] == "-s"){
                 shortInfo = true;
-                count=1;
             }else{
                 File file = new File(mas[i]);
                 if(file.exists()){
