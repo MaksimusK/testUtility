@@ -7,20 +7,28 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Utility {
+    static String prefix = "prefix_"; // -p
+    static String path = "src/main/java/com/test/testUtility"; //-o
+    static private  boolean addNowFile = true; // отвечает за дозапись -a
+    static private boolean extendedInfo = false; //-f
+    static private boolean hortInfo = false; //-s
 
     public static void main(String[] args) {
 
         File file = new File("src/main/java/com/test/testUtility/in1.txt");
-        List<String> fileString = new ArrayList<>();
-        List<Integer> fileInteger = new ArrayList<>();
-        List<Float> fileFloat = new ArrayList<>();
-        String prefix = "";
+//        List<String> fileString = new ArrayList<>();
+//        List<Integer> fileInteger = new ArrayList<>();
+//        List<Float> fileFloat = new ArrayList<>();
 
+        filteringByType(file);
+    }
+
+    public static void filteringByType(File file){
         try(FileReader fileInputStream = new FileReader(file);
             Scanner scanner = new Scanner(fileInputStream).useLocale(Locale.US);
-            FileWriter fileWriterInt = new FileWriter(prefix + "integers.txt");
-            FileWriter fileWriterFloat = new FileWriter(prefix + "floats.txt");
-            FileWriter fileWriterStr = new FileWriter(prefix + "strings.txt");
+            FileWriter fileWriterInt = new FileWriter(path+ "/" +prefix + "integers.txt", addNowFile);
+            FileWriter fileWriterFloat = new FileWriter(path + "/" + prefix + "floats.txt", addNowFile);
+            FileWriter fileWriterStr = new FileWriter(path + "/" + prefix + "strings.txt", addNowFile);
 
         )
         {
@@ -43,9 +51,6 @@ public class Utility {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
     }
 }
 
