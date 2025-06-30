@@ -19,16 +19,19 @@ public class ExtendedInfoStatistics {
     private static int minLengthString = Integer.MAX_VALUE;
 
     private static int sumInt;
-    private static int averageValueInt;
+    private static float averageValueInt;
 
     private static float sumFloat;
     private static float averageValueFloat;
+
+    private static int countString;
 
     ProcessingParameters processingParameters;
 
     public ExtendedInfoStatistics(ProcessingParameters processingParameters){
         this.processingParameters = processingParameters;
     }
+
 
     public int getCountElementString() {
         return countElementString;
@@ -147,7 +150,8 @@ public class ExtendedInfoStatistics {
                     if(str.isEmpty()) {
                         continue;
                     }
-                    countElementString +=  str.length();
+                    countElementString+= str.length();
+                    countString++;
                     if(str.length() > maxLengthString){
                         maxLengthString = str.length();
                     }
@@ -174,9 +178,6 @@ public class ExtendedInfoStatistics {
 
     }
 
-    public void calculateAverageValueAndFloat(){
-
-    }
 
 
     public void PrintStatistics(){
@@ -186,9 +187,9 @@ public class ExtendedInfoStatistics {
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА INT");
         System.out.println("Количество элементов добавленных в группу INT: " + countElementInt);
-        System.out.println("MAX значение в группе INT:" + maxNumberInt);
-        System.out.println("MIN значение в группе INT:" + minNumberInt);
-        System.out.println("СУММА элементов в группе INT:" + sumInt);
+        System.out.println("MAX значение в группе INT: " + maxNumberInt);
+        System.out.println("MIN значение в группе INT: " + minNumberInt);
+        System.out.println("СУММА чисел в группе INT: " + sumInt);
         System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе INT:" + averageValueInt);
         }else{
             File file2 = new File(processingParameters.getPath()+ "/" +
@@ -199,10 +200,10 @@ public class ExtendedInfoStatistics {
                 System.out.println("-----------------------------------------");
                 System.out.println("ГРУППА FLOAT");
                 System.out.println("Количество элементов добавленных в группу FLOAT: " + countElementFloat);
-                System.out.println("MAX значение в группе FLOAT:" + maxNumberFloat);
-                System.out.println("MIN значение в группе FLOAT:" + minNumberFloat);
-                System.out.println("СУММА элементов в группе FLOAT:" + sumFloat);
-                System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе FLOAT:" + averageValueFloat);
+                System.out.println("MAX значение в группе FLOAT: " + maxNumberFloat);
+                System.out.println("MIN значение в группе FLOAT: " + minNumberFloat);
+                System.out.println("СУММА чисел в группе FLOAT: " + sumFloat);
+                System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе FLOAT: " + averageValueFloat);
 
         }else{
             File file2 = new File(processingParameters.getPath() + "/" +
@@ -213,8 +214,9 @@ public class ExtendedInfoStatistics {
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА STRING");
         System.out.println("Количество элементов добавленных в группу STRING: " + countElementString);
-        System.out.println("MAX значение в группе STRING:" + maxLengthString);
-        System.out.println("MIN значение в группе STRING:" + minLengthString);
+        System.out.println("Количество строк добавленных в группу STRING: " + countString);
+        System.out.println("MAX значение в группе STRING: " + maxLengthString);
+        System.out.println("MIN значение в группе STRING: " + minLengthString);
         }else{
             File file2 = new File(processingParameters.getPath() + "/" +
                     processingParameters.getPrefix() + "strings.txt");

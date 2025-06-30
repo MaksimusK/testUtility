@@ -1,19 +1,19 @@
-package com.test.testUtility;
+package com.testTask.testUtility;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple App.
+ * Unit testTask for simple App.
  */
 public class AppTest 
     extends TestCase
 {
     /**
-     * Create the test case
+     * Create the testTask case
      *
-     * @param testName name of the test case
+     * @param testName name of the testTask case
      */
     public AppTest( String testName )
     {

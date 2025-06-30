@@ -19,7 +19,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.test.testUtility.Utility</mainClass>
+              <mainClass>com.testTask.testUtility.Utility</mainClass>
             </manifest>
           </archive>
         </configuration>

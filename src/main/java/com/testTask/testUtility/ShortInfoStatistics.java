@@ -73,14 +73,38 @@ public class ShortInfoStatistics {
     }
 
     public void PrintStatistics(){
+
+        if(countElementInt != 0){
+
+        System.out.println("-----------------------------------------");
         System.out.println("ГРУППА INT");
         System.out.println("Количество элементов добавленных в группу INT: " + countElementInt);
+        System.out.println("-----------------------------------------");
+        }else{
+            File file2 = new File(processingParameters.getPath()+ "/" +
+                    processingParameters.getPrefix() + "integers.txt");
+            file2.delete();
+        }
+        if(countElementFloat != 0){
 
         System.out.println("ГРУППА FLOAT");
         System.out.println("Количество элементов добавленных в группу FLOAT: " + countElementFloat);
+        System.out.println("-----------------------------------------");
+        }else{
+            File file2 = new File(processingParameters.getPath() + "/" +
+                    processingParameters.getPrefix() + "floats.txt");
+            file2.delete();
+        }
+        if(countElementString != 0){
 
         System.out.println("ГРУППА STRING");
         System.out.println("Количество элементов добавленных в группу STRING: " + countElementString);
+        System.out.println("-----------------------------------------");
+        }else{
+            File file2 = new File(processingParameters.getPath() + "/" +
+                    processingParameters.getPrefix() + "strings.txt");
+            file2.delete();
+        }
 
     }
 }
