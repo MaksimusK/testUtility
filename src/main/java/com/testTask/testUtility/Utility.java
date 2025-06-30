@@ -9,26 +9,25 @@ static ProcessingParameters processingParameters = new ProcessingParameters();
 
     public static void main(String[] args) {
         int count = 0;
-        String[] args1 =new String[]{"-o", "src/main/java/com/testTask/testUtility", "-f", "-a", "src/main/java/com/testTask/testUtility/in1.txt"};
 
-        for (int i = 0; i < args1.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             if(count == 1){
                 count=0;
                 continue;
-            }else if(args1[i].equals("-o")){
-                processingParameters.setPath(args1[i+1]);
+            }else if(args[i].equals("-o")){
+                processingParameters.setPath(args[i+1]);
                 count=1;
-            }else if(args1[i].equals("-p")){
-                processingParameters.setPrefix(args1[i+1]);
+            }else if(args[i].equals("-p")){
+                processingParameters.setPrefix(args[i+1]);
                 count=1;
-            }else if(args1[i].equals("-a")){
+            }else if(args[i].equals("-a")){
                 processingParameters.setAddNowFile(true);
-            }else if(args1[i].equals("-f")){
+            }else if(args[i].equals("-f")){
                 processingParameters.setExtendedInfo(true);
-            }else if(args1[i].equals("-s")){
+            }else if(args[i].equals("-s")){
                 processingParameters.setShortInfo(true);
             }else{
-                File file = new File(args1[i]);
+                File file = new File(args[i]);
                 if(file.exists()){
                     processingParameters.files.add(file);
                 }else{
@@ -37,20 +36,31 @@ static ProcessingParameters processingParameters = new ProcessingParameters();
             }
         }
 
-        for (int i = 0; i < processingParameters.files.size(); i++) {
+
         if(processingParameters.isExtendedInfo()){
             ExtendedInfoStatistics extendedInfoStatistics = new ExtendedInfoStatistics(processingParameters);
+            for (int i = 0; i < processingParameters.files.size(); i++) {
             extendedInfoStatistics.filteringByType(processingParameters.files.get(i));
-            extendedInfoStatistics.PrintStatistics();
             System.out.println();
+            }
+            extendedInfoStatistics.PrintStatistics();
+
+        }else if(processingParameters.isShortInfo()){
+            ShortInfoStatistics shortInfoStatistics = new ShortInfoStatistics(processingParameters);
+            for (int i = 0; i < processingParameters.files.size(); i++) {
+            shortInfoStatistics.filteringByType(processingParameters.files.get(i));
+            System.out.println();
+            }
+            shortInfoStatistics.PrintStatistics();
         }else{
             ShortInfoStatistics shortInfoStatistics = new ShortInfoStatistics(processingParameters);
-            shortInfoStatistics.filteringByType(processingParameters.files.get(i));
-            shortInfoStatistics.PrintStatistics();
-            System.out.println();
+            for (int i = 0; i < processingParameters.files.size(); i++) {
+                shortInfoStatistics.filteringByType(processingParameters.files.get(i));
+                System.out.println();
+            }
         }
 
-        }
+
     }
 
 

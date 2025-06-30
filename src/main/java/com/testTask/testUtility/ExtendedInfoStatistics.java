@@ -108,7 +108,6 @@ public class ExtendedInfoStatistics {
 
 
     public  void filteringByType(File file){
-        System.out.println(processingParameters.getPath()+ "/" +processingParameters.getPrefix() + "integers.txt");
         try(FileReader fileInputStream = new FileReader(file);
             Scanner scanner = new Scanner(fileInputStream).useLocale(Locale.US);
             FileWriter fileWriterInt = new FileWriter(processingParameters.getPath()+ "/" +processingParameters.getPrefix() + "integers.txt", processingParameters.isAddNowFile());
@@ -141,6 +140,7 @@ public class ExtendedInfoStatistics {
                     if(value < minNumberFloat){
                         minNumberFloat = value;
                     }
+
                     sumFloat += value;
                     countElementFloat++;
                     fileWriterFloat.write(value + "\n");
