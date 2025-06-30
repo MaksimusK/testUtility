@@ -9,7 +9,7 @@ static ProcessingParameters processingParameters = new ProcessingParameters();
 
     public static void main(String[] args) {
         int count = 0;
-        String[] args1 =new String[]{"-o", "src/main/java/com/testTask/testUtility", "-f", "-a", "src/main/java/com/testTask/testUtility/in1.txt", "src/main/java/com/testTask/testUtility/in2.txt"};
+        String[] args1 =new String[]{"-o", "src/main/java/com/testTask/testUtility", "-f", "-a", "src/main/java/com/testTask/testUtility/in2.txt"};
 
         for (int i = 0; i < args1.length; i++) {
             if(count == 1){

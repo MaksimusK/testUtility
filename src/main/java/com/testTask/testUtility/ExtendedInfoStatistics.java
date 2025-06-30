@@ -5,24 +5,24 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ExtendedInfoStatistics {
-    private int countElementString;
-    private int countElementInt;
-    private int countElementFloat;
+    private static int countElementString;
+    private static int countElementInt;
+    private static int countElementFloat;
 
-    private int maxNumberInt;
-    private int minNumberInt;
+    private static int maxNumberInt =Integer.MIN_VALUE;
+    private static int minNumberInt =Integer.MAX_VALUE;
 
-    private float maxNumberFloat;
-    private float minNumberFloat;
+    private static float maxNumberFloat = Float.MIN_VALUE;
+    private static float minNumberFloat = Float.MAX_VALUE;
 
-    private int maxLengthString;
-    private int minLengthString;
+    private static int maxLengthString = -1;
+    private static int minLengthString = Integer.MAX_VALUE;
 
-    private int sumInt;
-    private int averageValueInt;
+    private static int sumInt;
+    private static int averageValueInt;
 
-    private float sumFloat;
-    private float averageValueFloat;
+    private static float sumFloat;
+    private static float averageValueFloat;
 
     ProcessingParameters processingParameters;
 
@@ -114,14 +114,7 @@ public class ExtendedInfoStatistics {
 
         )
         {
-            minNumberInt = Integer.MAX_VALUE;
-            maxNumberInt = Integer.MIN_VALUE;
 
-            minNumberFloat = Integer.MAX_VALUE;
-            maxNumberFloat = Integer.MIN_VALUE;
-
-            minLengthString = Integer.MAX_VALUE;
-            maxLengthString = -1;
 
             while(scanner.hasNext()){
 
@@ -166,26 +159,29 @@ public class ExtendedInfoStatistics {
                     }
 
                 }
+
+            }
+            if(countElementInt != 0){
+                averageValueInt = sumInt / countElementInt;
+            }if(countElementFloat != 0){
+            averageValueFloat = sumFloat / countElementFloat;
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(countElementInt != 0){
-            averageValueInt = sumInt / countElementInt;
-            File file2 = new File(processingParameters.getPath()+ "/" +processingParameters.getPrefix() + "integers.txt");
-            file2.delete();
 
-        }if(countElementFloat != 0){
+    }
 
-            averageValueFloat = sumFloat / countElementFloat;
-        }
+    public void calculateAverageValueAndFloat(){
+
     }
 
 
     public void PrintStatistics(){
         if(countElementInt != 0){
+
 
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА INT");
@@ -194,15 +190,24 @@ public class ExtendedInfoStatistics {
         System.out.println("MIN значение в группе INT:" + minNumberInt);
         System.out.println("СУММА элементов в группе INT:" + sumInt);
         System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе INT:" + averageValueInt);
+        }else{
+            File file2 = new File(processingParameters.getPath()+ "/" +
+                    processingParameters.getPrefix() + "integers.txt");
+            file2.delete();
         }if(countElementFloat != 0){
 
-        System.out.println("-----------------------------------------");
-        System.out.println("ГРУППА FLOAT");
-        System.out.println("Количество элементов добавленных в группу FLOAT: " + countElementFloat);
-        System.out.println("MAX значение в группе FLOAT:" + maxNumberFloat);
-        System.out.println("MIN значение в группе FLOAT:" + minNumberFloat);
-        System.out.println("СУММА элементов в группе FLOAT:" + sumFloat);
-        System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе FLOAT:" + averageValueFloat);
+                System.out.println("-----------------------------------------");
+                System.out.println("ГРУППА FLOAT");
+                System.out.println("Количество элементов добавленных в группу FLOAT: " + countElementFloat);
+                System.out.println("MAX значение в группе FLOAT:" + maxNumberFloat);
+                System.out.println("MIN значение в группе FLOAT:" + minNumberFloat);
+                System.out.println("СУММА элементов в группе FLOAT:" + sumFloat);
+                System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе FLOAT:" + averageValueFloat);
+
+        }else{
+            File file2 = new File(processingParameters.getPath() + "/" +
+                    processingParameters.getPrefix() + "floats.txt");
+            file2.delete();
         }if(countElementString != 0){
 
         System.out.println("-----------------------------------------");
@@ -210,6 +215,10 @@ public class ExtendedInfoStatistics {
         System.out.println("Количество элементов добавленных в группу STRING: " + countElementString);
         System.out.println("MAX значение в группе STRING:" + maxLengthString);
         System.out.println("MIN значение в группе STRING:" + minLengthString);
+        }else{
+            File file2 = new File(processingParameters.getPath() + "/" +
+                    processingParameters.getPrefix() + "strings.txt");
+            file2.delete();
         }
         System.out.println("-----------------------------------------");
     }
