@@ -8,7 +8,7 @@ public class ProcessingParameters {
 
     private String path = ""; //-o
     private String prefix = ""; // -p
-    private boolean addNowFile = false; // отвечает за дозапись -a
+    private boolean addNowFile = false; // -a
     private boolean extendedInfo = false; //-f
     private boolean shortInfo = false; //-s
     List<File> files = new ArrayList<>();

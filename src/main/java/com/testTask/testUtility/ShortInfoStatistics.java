@@ -51,15 +51,12 @@ public class ShortInfoStatistics {
             while(scanner.hasNext()){
 
                 if(scanner.hasNextInt()){
-//                    fileInteger.add(scanner.nextInt());
                     countElementInt++;
                     fileWriterInt.write(scanner.nextInt() + "\n");
                 }else if(scanner.hasNextFloat() || scanner.hasNextDouble()){
-//                    fileFloat.add(scanner.nextFloat());
                     countElementFloat++;
                     fileWriterFloat.write(scanner.nextFloat() + "\n");
                 } else if(scanner.hasNext()){
-//                    fileString.add(scanner.nextLine());
                     String str = scanner.nextLine();
                     countElementString +=  str.length();
                     if(!str.isEmpty()) {

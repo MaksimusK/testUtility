@@ -7,32 +7,28 @@ public class Utility {
 static ProcessingParameters processingParameters = new ProcessingParameters();
 
 
-
     public static void main(String[] args) {
         int count = 0;
-//        for (int i = 0; i < args.length; i++) {
-//            System.out.println(args[i]);
-//        }
-        String[] mas = new String[]{"-o", "src/main/java/com/testTask/testUtility", "-p", "prefix_", "-f","src/main/java/com/testTask/testUtility/in1.txt"};
+        String[] args1 =new String[]{"-o", "src/main/java/com/testTask/testUtility", "-f", "-a", "src/main/java/com/testTask/testUtility/in1.txt", "src/main/java/com/testTask/testUtility/in2.txt"};
 
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < args1.length; i++) {
             if(count == 1){
                 count=0;
                 continue;
-            }else if(args[i].equals("-o")){
-                processingParameters.setPath(args[i+1]);
+            }else if(args1[i].equals("-o")){
+                processingParameters.setPath(args1[i+1]);
                 count=1;
-            }else if(args[i].equals("-p")){
-                processingParameters.setPrefix(args[i+1]);
+            }else if(args1[i].equals("-p")){
+                processingParameters.setPrefix(args1[i+1]);
                 count=1;
-            }else if(args[i].equals("-a")){
+            }else if(args1[i].equals("-a")){
                 processingParameters.setAddNowFile(true);
-            }else if(args[i].equals("-f")){
+            }else if(args1[i].equals("-f")){
                 processingParameters.setExtendedInfo(true);
-            }else if(args[i].equals("-s")){
+            }else if(args1[i].equals("-s")){
                 processingParameters.setShortInfo(true);
             }else{
-                File file = new File(args[i]);
+                File file = new File(args1[i]);
                 if(file.exists()){
                     processingParameters.files.add(file);
                 }else{

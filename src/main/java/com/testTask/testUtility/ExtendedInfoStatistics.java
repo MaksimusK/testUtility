@@ -172,12 +172,21 @@ public class ExtendedInfoStatistics {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        averageValueInt = sumInt / countElementInt;
-        averageValueFloat = sumFloat / countElementFloat;
+        if(countElementInt != 0){
+            averageValueInt = sumInt / countElementInt;
+            File file2 = new File(processingParameters.getPath()+ "/" +processingParameters.getPrefix() + "integers.txt");
+            file2.delete();
+
+        }if(countElementFloat != 0){
+
+            averageValueFloat = sumFloat / countElementFloat;
+        }
     }
 
 
     public void PrintStatistics(){
+        if(countElementInt != 0){
+
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА INT");
         System.out.println("Количество элементов добавленных в группу INT: " + countElementInt);
@@ -185,6 +194,8 @@ public class ExtendedInfoStatistics {
         System.out.println("MIN значение в группе INT:" + minNumberInt);
         System.out.println("СУММА элементов в группе INT:" + sumInt);
         System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе INT:" + averageValueInt);
+        }if(countElementFloat != 0){
+
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА FLOAT");
         System.out.println("Количество элементов добавленных в группу FLOAT: " + countElementFloat);
@@ -192,11 +203,14 @@ public class ExtendedInfoStatistics {
         System.out.println("MIN значение в группе FLOAT:" + minNumberFloat);
         System.out.println("СУММА элементов в группе FLOAT:" + sumFloat);
         System.out.println("СРЕДНЕЕ ЗНАЧЕНИЕ элементов в группе FLOAT:" + averageValueFloat);
+        }if(countElementString != 0){
+
         System.out.println("-----------------------------------------");
         System.out.println("ГРУППА STRING");
         System.out.println("Количество элементов добавленных в группу STRING: " + countElementString);
         System.out.println("MAX значение в группе STRING:" + maxLengthString);
         System.out.println("MIN значение в группе STRING:" + minLengthString);
+        }
         System.out.println("-----------------------------------------");
     }
 }
